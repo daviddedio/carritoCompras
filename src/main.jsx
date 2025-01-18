@@ -1,8 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { CarritoApp } from './CarritoApp'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <p>Prueba</p>
-  </StrictMode>,
+  <BrowserRouter>
+    <StrictMode>
+      <CarritoApp />
+    </StrictMode>
+  </BrowserRouter>
 )
