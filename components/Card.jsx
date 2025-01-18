@@ -2,14 +2,16 @@ import { useState } from "react"
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 
-export const Card = ({ imagen, titulo, descripcion, precio, id, rate, categoria }) => {
+export const Card = ({ imagen, titulo, descripcion, precio, id, rate, categoria, hAgregar, hEliminar}) => {
 
     const [added, setAdded] = useState('')
 
     const agregar = ()=>{
+        hAgregar()
         setAdded(true)
     }    
     const quitar = ()=>{
+        hEliminar()
         setAdded(false)
     }
 

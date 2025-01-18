@@ -1,38 +1,46 @@
-import {Card} from '../components/Card'
-import { useEffect, useState } from "react"
+import { Card } from '../components/Card'
+import { useContext } from "react"
+import { ProductosContext } from '../context/ProductosContext'
+import { CarritoContext} from '../context/CarritoContext'
 
 export const ComprasPage = () => {
     
-    const [productos, setProductos] = useState([])
+    const {productos} = useContext(ProductosContext)
+    const { listaCompras, agregar, aumentar, disminuir, eliminar } = useContext(CarritoContext)
 
-    useEffect(()=>{
-        fetchProductos()
-    }, [])
+    const hAgregar = (compra)=>{
+        console.log(compra)
+        agregar(compra)
+    }
+    const hEliminar = (id)=>{
+        eliminar(id)
+    }
+    const hAumentar = (id)=>{
 
-    const fetchProductos = async()=>{
-        const response = await fetch("https://fakestoreapi.com/products")
-        const data = await response.json()
-        console.log(data)
-        setProductos(data)
+    }
+    const hDisminuir = (id)=>{
+
     }
 
     return (
         <>
-        <h1>Listado de articulos</h1>
-        <hr />
-        {
-            productos.map(producto =>(
-                <Card
-                imagen={producto.image}
-                titulo={producto.title}
-                descripcion={producto.description}
-                precio={producto.price}
-                id={producto.id}
-                rate={producto.rating.rate}
-                categoria={producto.category}
-                ></Card>
-            ))
-        }
+            <h1>Listado de articulos</h1>
+            <hr />
+            {
+                productos.map(producto =>(
+                    <Card key={producto.id}
+                    imagen={producto.image}
+                    titulo={producto.title}
+                    descripcion={producto.description}
+                    precio={producto.price}
+                    id={producto.id}
+                    rate={producto.rating.rate}
+                    categoria={producto.category}
+                    hAgregar={()=>hAgregar(producto)}
+                    hEliminar={()=>hEliminar(producto.id)}
+                    ></Card>
+                ))
+            }
         </>
     )
 }
