@@ -9,7 +9,6 @@ export const ComprasPage = () => {
     const { listaCompras, agregar, aumentar, disminuir, eliminar } = useContext(CarritoContext)
 
     const hAgregar = (compra)=>{
-        console.log(compra)
         agregar(compra)
     }
     const hEliminar = (id)=>{
